@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "57193092445",
+    "firebase_url": "https://smash-the-box.firebaseio.com",
+    "project_id": "smash-the-box",
+    "storage_bucket": "smash-the-box.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57193092445:android:3f1da2467a344886",
+        "android_client_info": {
+          "package_name": "xevenition.com.smashthebox"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "57193092445-k239meoeuvscjlgth3j42vee9dva124i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xevenition.com.smashthebox",
+            "certificate_hash": "c237ddf0f37fe58f544afad6a04c549992c8430d"
+          }
+        },
+        {
+          "client_id": "57193092445-rtk23to3rcreg1fa8jcotv4i5mbs7jvp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "xevenition.com.smashthebox",
+            "certificate_hash": "7d30548f559aa5bdfa06fffde82c2dc22cd2dfba"
+          }
+        },
+        {
+          "client_id": "57193092445-ltvq8u2ncgao6bcqfdsj1qjadvunm4rd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIXgKMRkvq9cwKDO3bEtANfx0f8SLkZhg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "57193092445-ltvq8u2ncgao6bcqfdsj1qjadvunm4rd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
