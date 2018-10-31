@@ -1,12 +1,18 @@
 package xevenition.com.smashthebox
 
+import android.app.ProgressDialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
@@ -18,9 +24,15 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var googleSignInClient: GoogleSignInClient
 
+    private var progressDialog: ProgressDialog? = null
+
+    private lateinit var button: Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val model = ViewModelProviders.of(this).get(MainViewModel::class.java)
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -30,6 +42,11 @@ class MainActivity : AppCompatActivity() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         auth = FirebaseAuth.getInstance()
+
+        button = findViewById(R.id.button)
+        button.setOnClickListener {
+            signIn()
+        }
     }
 
     override fun onStart() {
@@ -41,9 +58,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun updateUI(user: FirebaseUser?) {
         if (user != null) {
-            //start app
+            button.visibility = View.GONE
+            startActivity(Intent(this, SmashActivity::class.java))
+            finish()
         } else {
             //show sign in button
+            button.visibility = View.VISIBLE
         }
     }
 
@@ -75,9 +95,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.id!!)
-        // [START_EXCLUDE silent]
-        showProgressDialog()
-        // [END_EXCLUDE]
+        if (progressDialog == null) {
+            progressDialog = ProgressDialog(this)
+            progressDialog?.setTitle(resources.getString(R.string.hang_on))
+            progressDialog?.setMessage(resources.getString(R.string.we_are_setting_you_up))
+        }
+        progressDialog?.show()
 
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         auth.signInWithCredential(credential)
@@ -90,13 +113,11 @@ class MainActivity : AppCompatActivity() {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
-                    Snackbar.make(main_layout, "Authentication Failed.", Snackbar.LENGTH_SHORT).show()
+                    Toast.makeText(this, resources.getString(R.string.request_failed), Toast.LENGTH_LONG).show()
                     updateUI(null)
                 }
 
-                // [START_EXCLUDE]
-                hideProgressDialog()
-                // [END_EXCLUDE]
+                progressDialog?.dismiss()
             }
     }
 
