@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':Wrlds-SDK-1.0.0'
