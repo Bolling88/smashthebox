@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.wrlds.sdk.Ball
 import xevenition.com.smashthebox.databinding.ActivitySmashBinding
 
 
@@ -17,6 +18,8 @@ class SmashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(
             this, R.layout.activity_smash)
+
+        val ball = Ball(this)
 
         val model = ViewModelProviders.of(this).get(SmashViewModel::class.java)
         binding.viewModel = model
