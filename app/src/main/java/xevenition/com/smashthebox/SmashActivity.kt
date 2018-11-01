@@ -22,6 +22,7 @@ class SmashActivity : AppCompatActivity() {
         val ball = Ball(this)
 
         val model = ViewModelProviders.of(this).get(SmashViewModel::class.java)
+        model.setBall(ball)
         binding.viewModel = model
         model.observableSmashForce.observe(this, Observer {
             it?.let {
