@@ -3,4 +3,5 @@
     <string name="hang_on">Hang on!</string>
     <string name="we_are_setting_you_up">We are setting you up...</string>
     <string name="request_failed">Request Failed!</string>
+    <string name="ble_location_required">You need the Bluetooth permission for the app to work!</string>
 </resources>
