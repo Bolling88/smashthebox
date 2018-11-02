@@ -11,6 +11,7 @@ android {
         applicationId "xevenition.com.smashthebox"
         minSdkVersion 26
         targetSdkVersion 28
+        multiDexEnabled true
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -47,7 +48,7 @@ dependencies {
     def lifecycle_version = "2.0.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
-    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version" // use -ktx for Kotlin
+    implementation "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version"
     testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
 }
 
