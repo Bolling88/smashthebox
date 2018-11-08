@@ -45,8 +45,8 @@ class SmashActivity : AppCompatActivity() {
         } else {
             // Permission has already been granted
             ball = Ball(this)
-            handleBallConnectionState(ball)
-            handleBallBounce(ball)
+            //handleBallConnectionState(ball)
+            //handleBallBounce(ball)
         }
     }
 
